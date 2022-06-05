@@ -28,6 +28,13 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 
 ### Role variables
 
+| Name                              | Default                      | Description                                                      |
+| :-------------------------------- | :--------------------------- | :--------------------------------------------------------------- |
+| `docker_version`                  | `20.10.16`                   | Defines the version of Docker Engine to install                  |
+| `docker_daemon_configuration`     | `{}`                         | YAML dict containing the Docker daemon configuration             |
+| `docker_compose_install`          | `false`                      | If set to `true`, install the Docker Compose v2 plugin           |
+| `docker_compose_version`          | `2.5.0`                      | Defines the version of the Docker Compose v2 plugin to install   |
+
 ### Examples
 
 * Configure the Docker daemon 
