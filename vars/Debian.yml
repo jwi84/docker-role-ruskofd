@@ -1,0 +1,6 @@
+---
+docker_packages:
+  - "docker-ce=5:{{ docker_version }}~3-0~{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}"
+  - "docker-ce-cli=5:{{ docker_version }}~3-0~{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}"
+  - containerd.io
+docker_compose_package: "docker-compose-plugin={{ docker_compose_version }}~{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}"

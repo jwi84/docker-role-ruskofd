@@ -21,10 +21,34 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
   - Docker Engine : https://docs.docker.com/engine/
   - Docker Compose : https://docs.docker.com/compose/
 
+**Implementation notes**
+
+  - Socket Activation : this role aims server deployments of Docker, therefore daemon socket activation is disabled.
+  - Docker Compose : this role can also install Docker Compose, but only the v2 version as plugin. The Docker Compose v1 (standalone `docker-compose` CLI) is now deprecated by Docker developers.
+
 ### Role variables
 
 ### Examples
 
+* Configure the Docker daemon 
+
+  ```YAML
+  docker_daemon_configuration:
+    userland-proxy: false
+    iptables: true
+    live-restore: true
+    features:
+      buildkit: true
+  ```
+
+* Install Docker Compose plugin (Docker Compose v2)
+
+  ```YAML
+  docker_compose_install: true
+
+  # You can also specify the version
+  docker_compose_version: "2.5.0"
+  ```
 
 ### Install and use this role
 

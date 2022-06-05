@@ -1,0 +1,19 @@
+---
+- name: Ensure role dependencies are installed
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - gnupg2
+
+- name: Ensure Docker DEB repository GPG key is installed
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    keyring: "/etc/apt/keyrings/docker.gpg"
+    state: present
+
+- name: Ensure Docker DEB repository is configured
+  ansible.builtin.apt_repository:  
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    filename: docker-ce
+    state: present
+    update_cache: yes
