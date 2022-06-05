@@ -4,6 +4,7 @@
     name:
       - ca-certificates
       - gnupg2
+    state: present
 
 - name: Ensure Docker DEB repository GPG key is installed
   ansible.builtin.apt_key:
