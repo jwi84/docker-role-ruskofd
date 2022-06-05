@@ -23,8 +23,8 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 
 **Implementation notes**
 
-  - Socket Activation : this role aims server deployments of Docker, therefore daemon socket activation is disabled (to avoid breaking of containers auto start on boot)
-  - Docker Compose : this role can also install Docker Compose, but only the v2 version as plugin. The Docker Compose v1 (standalone `docker-compose` CLI) is now deprecated by Docker developers.
+  - ***Socket Activation*** : this role aims server deployments of Docker, therefore daemon socket activation is disabled (to avoid breaking of containers auto start on boot)
+  - ***Docker Compose*** : this role can also install Docker Compose, but only the v2 version as plugin. The Docker Compose v1 (standalone `docker-compose` CLI) is now deprecated by Docker developers.
 
 ### Role variables
 
@@ -32,8 +32,8 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 | :-------------------------------- | :--------------------------- | :--------------------------------------------------------------- |
 | `docker_version`                  | `20.10.16`                   | Defines the version of Docker Engine to install                  |
 | `docker_daemon_configuration`     | `{}`                         | YAML dict containing the Docker daemon configuration             |
-| `docker_compose_install`          | `false`                      | If set to `true`, install the Docker Compose v2 plugin           |
-| `docker_compose_version`          | `2.5.0`                      | Defines the version of the Docker Compose v2 plugin to install   |
+| `docker_compose_plugin_enabled`   | `false`                      | If set to `true`, install the Docker Compose v2 plugin           |
+| `docker_compose_plugin_version`   | `2.5.0`                      | Defines the version of the Docker Compose v2 plugin to install   |
 
 ### Examples
 
@@ -51,10 +51,10 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 * Install Docker Compose plugin (Docker Compose v2)
 
   ```YAML
-  docker_compose_install: true
+  docker_compose_plugin_enabled: true
 
   # You can also specify the version
-  docker_compose_version: "2.5.0"
+  docker_compose_plugin_version: "2.5.0"
   ```
 
 ### Install and use this role
