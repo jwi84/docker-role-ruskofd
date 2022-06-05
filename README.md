@@ -23,7 +23,7 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 
 **Implementation notes**
 
-  - Socket Activation : this role aims server deployments of Docker, therefore daemon socket activation is disabled.
+  - Socket Activation : this role aims server deployments of Docker, therefore daemon socket activation is disabled (to avoid breaking of containers auto start on boot)
   - Docker Compose : this role can also install Docker Compose, but only the v2 version as plugin. The Docker Compose v1 (standalone `docker-compose` CLI) is now deprecated by Docker developers.
 
 ### Role variables
