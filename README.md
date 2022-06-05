@@ -31,7 +31,7 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 * Install the role using the command-line :
 
   ```shell
-  $ ansible-galaxy collection install git+https://github.com/ruskofd/docker-role.git
+  $ ansible-galaxy role install git+https://github.com/ruskofd/docker-role.git
   ```
 
 * Install the collection in your projects using a `requirements.yml` file and `ansible-galaxy` command-line :
