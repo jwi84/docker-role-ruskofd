@@ -8,7 +8,10 @@
     - "{{ ansible_os_family }}.yml"
 
 - name: OS-specific tasks
-  include_tasks: "setup-{{ ansible_os_family }}.yml"
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "setup-{{ ansible_distribution }}.yml"
+    - "setup-{{ ansible_os_family }}.yml"
 
 - name: Install Docker Engine
   ansible.builtin.package:

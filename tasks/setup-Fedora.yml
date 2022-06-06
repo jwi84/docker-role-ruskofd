@@ -1,0 +1,13 @@
+---
+- name: Ensure DNF plugins are installed
+  ansible.builtin.dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Ensure Docker DNF repository is configured
+  ansible.builtin.get_url:
+    url: "https://download.docker.com/linux/fedora/docker-ce.repo"
+    dest: "/etc/yum.repos.d/docker-ce.repo"
+    owner: root
+    group: root
+    mode: '0644'

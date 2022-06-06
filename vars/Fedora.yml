@@ -1,0 +1,6 @@
+---
+docker_packages:
+  - "docker-ce-{{ docker_version }}"
+  - "docker-ce-cli-{{ docker_version }}"
+  - containerd.io
+docker_compose_plugin_package: "docker-compose-plugin-{{ docker_compose_plugin_version }}"

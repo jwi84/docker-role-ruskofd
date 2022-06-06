@@ -14,6 +14,7 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 
 **Supported Platforms**
 
+  - Fedora 36
   - Ubuntu 22.04
 
 **References**
