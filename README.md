@@ -75,7 +75,7 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
     - name: docker
       src: https://github.com/ruskofd/docker-role.git
       scm: git
-      version: '1.0.0'
+      version: '1.1.0'
 
   $ ansible-galaxy install-f -r requirements.yml
   ```
