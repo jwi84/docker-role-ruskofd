@@ -1,7 +1,0 @@
-# Managed by Ansible
-[Unit]
-Requires=
-Requires=containerd.service
-[Service]
-ExecStart=
-ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock
