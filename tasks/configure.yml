@@ -1,4 +1,13 @@
 ---
+- name: Ensure Docker daemon environment file exists
+  ansible.builtin.template:
+    src: env.j2
+    dest: "{{ docker_env_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Docker
+
 - name: Ensure Docker configuration directory exists
   ansible.builtin.file:
     path: /etc/docker

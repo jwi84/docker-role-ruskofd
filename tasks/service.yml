@@ -1,19 +1,12 @@
 ---
-- name: Ensure Docker Engine service override directory exists
-  ansible.builtin.file:
-    path: "/etc/systemd/system/docker.service.d"
-    state: directory
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Ensure Docker Engine service override configuration exists
+- name: Ensure Docker Engine custom service unit exists
   ansible.builtin.template:
-    src: override.conf.j2
-    dest: /etc/systemd/system/docker.service.d/override.conf
+    src: docker.service.j2
+    dest: /etc/systemd/system/docker.service
     owner: root
     group: root
     mode: '0644'
+  notify: Restart Docker
 
 - name: Ensure Docker Engine is enabled on boot and started
   ansible.builtin.systemd:
