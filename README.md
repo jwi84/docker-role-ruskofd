@@ -4,7 +4,7 @@
 
 ### General informations
 
-This Ansible role is designed to deploy and manage Docker Engine on target servers. This role only deploy the Community Edition of Docker.
+This Ansible role is designed to deploy and manage Docker Engine on target servers. This role only deploys the Community Edition of Docker Engine.
 
 **Table of Contents**
 
@@ -24,17 +24,18 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
 
 **Implementation notes**
 
-  - ***Socket Activation*** : this role aims server deployments of Docker, therefore daemon socket activation is disabled (to avoid breaking of containers auto start on boot)
+  - ***Socket Activation*** : this role targets for server deployments of Docker, therefore daemon **socket activation is disabled by design** to avoid problems with the containers autostart at boot time.
   - ***Docker Compose*** : this role can also install Docker Compose, but only the v2 version as plugin. The Docker Compose v1 (standalone `docker-compose` CLI) is now deprecated by Docker developers.
 
 ### Role variables
 
 | Name                              | Default                      | Description                                                      |
 | :-------------------------------- | :--------------------------- | :--------------------------------------------------------------- |
-| `docker_version`                  | `20.10.16`                   | Defines the version of Docker Engine to install                  |
-| `docker_daemon_configuration`     | `{}`                         | YAML dict containing the Docker daemon configuration             |
+| `docker_version`                  | `20.10.17`                   | Defines the version of Docker Engine to install                  |
+| `docker_daemon_configuration`     | `{}`                         | YAML dict containing the Docker daemon configuration (see examples below) |
+| `docker_daemon_listen_sockets`    | `["unix:///var/run/docker.sock"]` | Defines the socket(s), UNIX or TCP, on which the Docker daemon should listen to | 
 | `docker_compose_plugin_enabled`   | `false`                      | If set to `true`, install the Docker Compose v2 plugin           |
-| `docker_compose_plugin_version`   | `2.5.0`                      | Defines the version of the Docker Compose v2 plugin to install   |
+| `docker_compose_plugin_version`   | `2.6.0`                      | Defines the version of the Docker Compose v2 plugin to install   |
 
 ### Examples
 
@@ -54,8 +55,14 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
   ```YAML
   docker_compose_plugin_enabled: true
 
-  # You can also specify the version
-  docker_compose_plugin_version: "2.5.0"
+  # You can also specify the version if needed
+  docker_compose_plugin_version: "2.6.0"
+  ```
+
+* Specify Docker daemon listen socket(s) :
+
+  ```YAML
+  docker_daemon_listen_sockets: [ "unix:///var/run/docker.sock", "tcp://192.168.59.106" ]
   ```
 
 ### Install and use this role
@@ -75,7 +82,7 @@ This Ansible role is designed to deploy and manage Docker Engine on target serve
     - name: docker
       src: https://github.com/ruskofd/docker-role.git
       scm: git
-      version: '1.1.0'
+      version: '1.2.0'
 
   $ ansible-galaxy install-f -r requirements.yml
   ```
